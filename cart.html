@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daisydreams-cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2b0e0e;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        #product {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #cart {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Daisydreams Cart</h1>
+    </header>
+
+    <div id="product">
+        <h2>Product Name: Flower</h2>
+        <p>Price: ₹999.99</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div id="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: ₹<span id="cart-total">0.00</span></p>
+    </div>
+
+    <script>
+        var cartItems = [];
+        var cartTotal = 0;
+
+        function addToCart() {
+            var productName = "Flower";
+            var productPrice = 999.99;
+
+            cartItems.push({
+                name: productName,
+                price: productPrice
+            });
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartItemsElement = document.getElementById('cart-items');
+            var cartTotalElement = document.getElementById('cart-total');
+
+            cartItemsElement.innerHTML = '';
+
+            cartTotal = 0;
+            cartItems.forEach(function(item) {
+                cartTotal += item.price;
+                var listItem = document.createElement('li');
+                listItem.textContent = item.name + ' - ₹' + item.price.toFixed(2);
+                cartItemsElement.appendChild(listItem);
+            });
+
+            cartTotalElement.textContent = cartTotal.toFixed(2);
+        }
+    </script>
+
+</body>
+
+</html>
